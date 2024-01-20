@@ -8,5 +8,4 @@ https://sotrh.github.io/learn-wgpu/#what-is-wgpu
 
 * Compile and run program:
 * cargo run
-
 ![alt text](https://github.com/carlosvneto/wgpu-01-window/blob/main/images/screen.png?raw=true)
