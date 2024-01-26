@@ -1,8 +1,8 @@
 use winit::{
     event::*,
     event_loop::EventLoop,
-    window::WindowBuilder,
     keyboard::{KeyCode, PhysicalKey},
+    window::WindowBuilder,
 };
 
 pub fn run() {
@@ -14,23 +14,25 @@ pub fn run() {
         .build(&event_loop)
         .unwrap();
 
-    event_loop.run(move |event, control_flow| match event {
-        Event::WindowEvent {
-            ref event,
-            window_id,
-        } if window_id == window.id() => match event {
-            WindowEvent::CloseRequested
-            | WindowEvent::KeyboardInput {
-                event:
-                    KeyEvent {
-                        state: ElementState::Pressed,
-                        physical_key: PhysicalKey::Code(KeyCode::Escape),
-                        ..
-                    },
-                ..
-            } => control_flow.exit(),
+    event_loop
+        .run(move |event, control_flow| match event {
+            Event::WindowEvent {
+                ref event,
+                window_id,
+            } if window_id == window.id() => match event {
+                WindowEvent::CloseRequested
+                | WindowEvent::KeyboardInput {
+                    event:
+                        KeyEvent {
+                            state: ElementState::Pressed,
+                            physical_key: PhysicalKey::Code(KeyCode::Escape),
+                            ..
+                        },
+                    ..
+                } => control_flow.exit(),
+                _ => {}
+            },
             _ => {}
-        },
-        _ => {}
-    }).unwrap();
+        })
+        .unwrap();
 }
